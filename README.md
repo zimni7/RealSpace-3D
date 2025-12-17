@@ -52,27 +52,26 @@ pip install -r requirements.txt
 ### 1️⃣ 원본 데이터 확인 (Data Visualization)
 ```bash
 python stray_visualize.py --input data/room
-'''
 
 ### 2️⃣ 단계별 실행 (Step-by-Step Execution)
 
 🅰️ Step A: 구조 감지 (Detection)
 ```bash
 python structure_detection.py
-'''
+
 🅱️ Step B: 3D 재구성 (Reconstruction)
 ```bash
 python structure_reconstruction.py
-'''
+
 🅲 Step C: 결과 비교 (Comparison)
 ```bash
 python compare_results.py
-'''
+
 
 ### 3️⃣ 최종 통합 실행 (Full Pipeline)
 ```bash
 python run_full_pipeline.py
-'''
+
 
 ### 📊 시연용 데이터셋 (Demo Dataset)
 Input: data/room/ (StrayScanner Raw Data)
