@@ -87,8 +87,8 @@ python compare_results.py
 
 ---
 
-### 3️⃣ 최종 통합 실행 (Full Pipeline)
-구조 감지 → 재구성 → 텍스처 복원까지 전체 파이프라인을 한 번에 실행한다.
+### 3️⃣ 최종 실행 (Full Pipeline)
+텍스처 복원까지 전체 파이프라인을 실행한다.
 
 ```bash
 python run_full_pipeline.py
