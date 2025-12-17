@@ -20,7 +20,7 @@
 3. 구조 감지 (Detection): 벽, 바닥, 천장 평면을 감지하고 정보를 추출한다.
 4. 재구성 (Reconstruction): 추출된 정보를 바탕으로 노이즈 없는 직각 3D 모델을 생성한다.
 5. 텍스처 복원 (Texturing): 생성된 모델에 실제 영상의 텍스처를 입히고 빈 곳을 복원한다.
-6. 
+
 ### 📂 파일 구성 및 역할
 
 #### 🧪 1. 시각화 및 검증 도구
@@ -29,14 +29,14 @@
 | `stray_visualize.py` | 원본 RGB-D Point Cloud 시각화 |
 | `visualize_first_person.py` | 1인칭 시점(WASD) 구조 탐색 뷰어 |
 
-#### 🧠 2. 핵심 처리 모듈
+#### 🧠 2. 구조 detection & reconstruction
 | 파일명 | 설명 |
 |------|------|
 | `structure_detection.py` | 벽·바닥·천장 구조 감지 |
 | `structure_reconstruction.py` | 직각 기반 3D 메쉬 생성 |
 | `compare_results.py` | 재구성 전/후 결과 비교 |
 
-#### 🚀 3. 최종 통합 파이프라인
+#### 🚀 3. 텍스처 매핑
 | 파일명 | 설명 |
 |------|------|
 | `run_full_pipeline.py` | 전체 파이프라인 자동 실행 |
@@ -87,8 +87,8 @@ python compare_results.py
 
 ---
 
-### 3️⃣ 최종 통합 실행 (Full Pipeline)
-구조 감지 → 재구성 → 텍스처 복원까지 전체 파이프라인을 한 번에 실행한다.
+### 3️⃣ 최종 실행 (Full Pipeline)
+텍스처 복원까지 전체 파이프라인을 실행한다.
 
 ```bash
 python run_full_pipeline.py
