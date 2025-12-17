@@ -1,0 +1,8 @@
+numpy
+open3d>=0.17.0
+opencv-python
+scipy
+matplotlib
+pandas
+mapbox-earcut
+tqdm
