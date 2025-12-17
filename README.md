@@ -43,9 +43,10 @@
 | `wall_texture_restoration.py` | 텍스처 매핑 및 조명 보정 |
 | `texture_hole_report.py` | 텍스처 빈 영역(Hole) 분석 |
 
-### 💻 실행 방법 (How to Run)
+## 💻 실행 방법 (How to Run)
 
-0. 환경 설정
+### 0️⃣ 환경 설정
+```bash
 pip install -r requirements.txt
 
 1. 원본 데이터 확인 (Data Visualization)
