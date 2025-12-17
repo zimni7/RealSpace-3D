@@ -15,11 +15,11 @@
 
 ```mermaid
 graph LR
-    A[StrayScanner Data] --> B(stray_visualize.py<br/>원본 데이터 확인)
-    B --> C(structure_detection.py<br/>구조 감지 및 저장)
-    C --> D(structure_reconstruction.py<br/>3D 메쉬 재구성)
-    D --> E(compare_results.py<br/>결과 비교 검증)
-    E --> F{run_full_pipeline.py<br/>최종 통합 실행}
+    A[StrayScanner_Data] --> B[stray_visualize_py]
+    B --> C[structure_detection_py]
+    C --> D[structure_reconstruction_py]
+    D --> E[compare_results_py]
+    E --> F[run_full_pipeline_py]
 
 1. 데이터 취득: StrayScanner 앱을 통해 공간을 스캔하고 PC로 가져온다.
 2. 전처리 및 시각화: 원본 포인트 클라우드를 3D로 시각화하여 데이터 상태를 확인한다.
