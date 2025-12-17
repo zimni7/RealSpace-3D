@@ -39,9 +39,9 @@
 #### 3. 텍스처 매핑
 | 파일명 | 설명 |
 |------|------|
-| `run_full_pipeline.py` | 전체 파이프라인 자동 실행 |
 | `wall_texture_restoration.py` | 텍스처 매핑 및 조명 보정 |
 | `texture_hole_report.py` | 텍스처 빈 영역(Hole) 분석 |
+| `run_full_pipeline.py` | 전체 파이프라인 자동 실행 |
 
 ## 💻 실행 방법 (How to Run)
 
