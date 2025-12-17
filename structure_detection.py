@@ -60,21 +60,37 @@ class WallFloorCeilingDetector:
         cx = self.intrinsics[0, 2] * (256 / 1920)
         cy = self.intrinsics[1, 2] * (192 / 1440)
         
-        # skvideo가 없으면 cv2로 대체하는 방어 코드 추가 추천 (여기선 유지)
-        import skvideo.io
         rgb_path = str(self.dataset_path / 'rgb.mp4')
         if not os.path.exists(rgb_path):
              raise FileNotFoundError(f"rgb.mp4 없음: {rgb_path}")
 
-        video = skvideo.io.vreader(rgb_path)
+        # [수정] skvideo 대신 cv2 사용 (라이브러리 통일)
+        cap = cv2.VideoCapture(rgb_path)
+        if not cap.isOpened():
+            raise RuntimeError(f"Failed to open video: {rgb_path}")
         
-        for idx, rgb_frame in enumerate(video):
-            if idx % sample_rate != 0: continue
-            if idx >= len(self.odometry): break
+        idx = 0
+        while True:
+            ret, rgb_frame_bgr = cap.read()
+            if not ret:
+                break
+            
+            # cv2는 BGR로 읽으므로 RGB로 변환
+            rgb_frame = cv2.cvtColor(rgb_frame_bgr, cv2.COLOR_BGR2RGB)
+            
+            # 루프 제어
+            if idx % sample_rate != 0: 
+                idx += 1
+                continue
+            if idx >= len(self.odometry): 
+                break
+                
             print(f"  프레임 {idx}/{len(self.odometry)}", end='\r')
             
             depth = cv2.imread(str(self.depth_files[idx]), cv2.IMREAD_UNCHANGED)
-            if depth is None: continue
+            if depth is None: 
+                idx += 1
+                continue
 
             depth_m = depth.astype(np.float32) / 1000.0
             confidence_path = self.dataset_path / 'confidence' / f'{idx:06d}.png'
@@ -85,7 +101,9 @@ class WallFloorCeilingDetector:
             else:
                 valid_mask = (depth_m > 0.1) & (depth_m < max_depth)
             
-            if valid_mask.sum() < 100: continue
+            if valid_mask.sum() < 100: 
+                idx += 1
+                continue
             
             row = self.odometry.iloc[idx]
             T_WC = np.eye(4)
@@ -108,6 +126,10 @@ class WallFloorCeilingDetector:
                 voxel_data[key]['points'].append(pt)
                 voxel_data[key]['colors'].append(col)
                 voxel_data[key]['count'] += 1
+            
+            idx += 1
+            
+        cap.release() # 자원 해제
         
         filtered_points, filtered_colors = [], []
         for vd in voxel_data.values():
