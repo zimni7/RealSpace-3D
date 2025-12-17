@@ -30,6 +30,8 @@ output/*
 # (중요) 해당 폴더 안의 파일들도 허용
 !output/room_detected_results/*
 !output/room_wall_textures_out/*
+!output/base_view/
+!output/base_view/room.ply
 
 # ==============================
 # 4. 혹시 모를 사고 방지 (시스템 파일)
